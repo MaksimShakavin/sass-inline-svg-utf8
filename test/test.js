@@ -5,7 +5,7 @@ var inlineSVG = require('../');
 
 var render = function(file, done) {
   return sass.render({
-    functions: inlineSVG(),
+    functions: inlineSVG(path.resolve(__dirname,'./images')),
     file: __dirname + '/scss/' + file
   }, done);
 }
@@ -33,6 +33,13 @@ describe('inline-svg', function() {
   test(file, function(done) {
     equalsFile(file, done);
   })
+});
+
+describe('inline svg with a directory param',function () {
+    var file = 'inline-dir-svg.scss';
+    test(file, function (done) {
+        equalsFile(file, done);
+    })
 });
 
 describe('replaces a string', function() {
